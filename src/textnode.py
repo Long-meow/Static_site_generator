@@ -11,11 +11,10 @@ class TextType(Enum):
 
 class TextNode: 
   
-  def __init__(self, text_content, text_type, url = None, alt_text = None):
+  def __init__(self, text_content, text_type = TextType.TEXT, url = None, alt_text = None):
     self.text = text_content
     self.text_type = text_type 
     self.url = url
-    self.alt_text = alt_text
 
   def __eq__(self, other_text_node):
     return (self.text == other_text_node.text and
@@ -40,8 +39,8 @@ class TextNode:
       case TextType.IMAGE: 
         return LeafNode(tag="img", value=self.text, props={
           "src": self.url,
-          "alt": self.alt_text
+          "alt": self.text 
         })
-      
+     
   def __repr__(self):
     return f"TextNode({self.text}, {self.text_type.value}, {self.url})"

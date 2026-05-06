@@ -49,12 +49,13 @@ class TestTextNode(unittest.TestCase):
     self.assertEqual((html_node.value, html_node.tag, html_node.props), ("this is a meow", "a", {"href": "hello kitty"}))
     
   def test_text_node_to_html_node_image(self): 
-    text_node = TextNode("this is a meow", TextType.IMAGE, url="hello kitty", alt_text="super meow meow")
+    text_node = TextNode("this is a meow", TextType.IMAGE, url="hello kitty")
     html_node = text_node.text_node_to_html_node() 
     self.assertEqual((html_node.value, html_node.tag, html_node.props), ("this is a meow", "img", {
       "src": "hello kitty",
-      "alt": "super meow meow"
+      "alt": "this is a meow"
     }))
+    
   
 if __name__ == "__main__": 
   unittest.main()

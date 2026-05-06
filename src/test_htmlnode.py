@@ -30,7 +30,7 @@ class TestLeafNode(unittest.TestCase):
     self.assertEqual(node.to_html(), "hello meow meow")
     
   def test_to_html_full_node(self): 
-    node = LeafNode("a", "Click me!", {"href": "https://www.google.com"}) 
+    node = LeafNode("a", "Click me!", props={"href": "https://www.google.com"})
     self.assertEqual(node.to_html(), '<a href="https://www.google.com" >Click me!</a>')
   
   def test_repr(self): 
@@ -49,7 +49,7 @@ class TestParentNode(unittest.TestCase):
   def test_to_html_with_children(self):
     child_node = LeafNode("span", "child")
     parent_node = ParentNode("div", [child_node])
-    self.assertEqual(parent_node.to_html(), "<div ><span >child</span></div>")
+    self.assertEqual(parent_node.to_html(), "<div><span>child</span></div>")
 
   def test_to_html_with_grandchildren(self):
       grandchild_node = LeafNode("b", "grandchild")
@@ -57,7 +57,7 @@ class TestParentNode(unittest.TestCase):
       parent_node = ParentNode("div", [child_node])
       self.assertEqual(
           parent_node.to_html(),
-          "<div ><span ><b >grandchild</b></span></div>",
+          "<div><span><b>grandchild</b></span></div>",
       )
       
   def test_to_html_with_multiple_children(self):
@@ -68,5 +68,5 @@ class TestParentNode(unittest.TestCase):
     parent_node = ParentNode("p", [child_node1, child_node2])
     self.assertEqual(
       parent_node.to_html(), 
-      "<p ><span ><b >grandchild1</b><i >grandchild2</i></span><span ></span></p>"
+      "<p><span><b>grandchild1</b><i>grandchild2</i></span><span></span></p>"
     )
