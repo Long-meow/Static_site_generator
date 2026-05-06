@@ -5,7 +5,7 @@ from pathlib import Path
 import sys 
 
 def main(): 
-  basepath = sys.argv[0] if len(sys.argv) > 0 else "/"
+  basepath = sys.argv[1] if len(sys.argv) > 0 else "/"
   if os.path.exists("docs"): 
     shutil.rmtree("docs") 
   shutil.copytree("static", "docs")
